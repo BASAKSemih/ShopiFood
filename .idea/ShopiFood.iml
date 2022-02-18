@@ -134,6 +134,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan-symfony" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpmetrics/phpmetrics" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/phpcpd" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-timer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
