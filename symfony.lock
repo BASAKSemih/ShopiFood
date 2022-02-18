@@ -1,4 +1,10 @@
 {
+    "composer/pcre": {
+        "version": "1.0.1"
+    },
+    "composer/xdebug-handler": {
+        "version": "2.0.4"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -83,6 +89,9 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
+    "friendsoftwig/twigcs": {
+        "version": "v5.1.0"
+    },
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
@@ -92,6 +101,9 @@
     "nikic/php-parser": {
         "version": "v4.13.2"
     },
+    "pdepend/pdepend": {
+        "version": "2.10.2"
+    },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
     },
@@ -100,6 +112,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.6.0"
+    },
+    "phpmd/phpmd": {
+        "version": "2.11.1"
     },
     "phpstan/phpdoc-parser": {
         "version": "1.2.0"
