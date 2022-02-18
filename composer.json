@@ -1,18 +1,28 @@
 {
+    "name": "basaksemih/shopifood",
+    "description": "ShopiFood",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.5",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.11",
+        "friendsoftwig/twigcs": "^5.1",
+        "nunomaduro/phpinsights": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.3",
+        "phpmd/phpmd": "^2.11",
+        "phpmetrics/phpmetrics": "^2.7",
         "phpstan/phpdoc-parser": "^1.2",
+        "phpstan/phpstan": "^1.4",
+        "phpstan/phpstan-doctrine": "^1.2",
+        "phpstan/phpstan-symfony": "^1.1",
+        "sebastian/phpcpd": "^6.0",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/asset": "5.4.*",
         "symfony/console": "5.4.*",
@@ -50,7 +60,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
