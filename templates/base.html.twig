@@ -14,14 +14,15 @@
 <body>
 {% include 'layout/_navbar.html.twig' %}
 <div class="">
-    {% for rubrique, messages in app.flashes   %}
+    {% for rubrique, messages in app.flashes %}
         <div class="alert alert-{{ rubrique }} text-center">
             {% for message in messages %}
                 <p>{{ message }}</p>
             {% endfor %}
         </div>
     {% endfor %}
-    {% block body %}{% endblock %}
+    {% block body %}
+    {% endblock %}
 </div>
 </body>
 </html>
