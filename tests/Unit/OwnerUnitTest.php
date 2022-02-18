@@ -27,7 +27,5 @@ class OwnerUnitTest extends TestCase
         $this->assertSame($owner->getFirstName(), 'Richard');
         $this->assertSame($owner->getPhoneNumber(), '0614562452');
         $this->assertSame($owner->getCreatedAt(), $dateTime);
-
-
     }
 }
