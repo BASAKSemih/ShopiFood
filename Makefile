@@ -8,3 +8,6 @@ phpmd:
 
 insights:
 	vendor/bin/phpinsights --no-interaction
+
+phpstan:
+	php vendor/bin/phpstan analyse -c phpstan.neon src --no-progress
