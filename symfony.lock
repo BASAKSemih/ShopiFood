@@ -313,6 +313,9 @@
     "seld/phar-utils": {
         "version": "1.2.0"
     },
+    "sempro/phpunit-pretty-print": {
+        "version": "1.4.0"
+    },
     "sensio/framework-extra-bundle": {
         "version": "6.2",
         "recipe": {
