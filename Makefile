@@ -29,6 +29,9 @@ container:
 yaml:
 	symfony console lint:yaml config
 
+routes:
+	php bin/console debug:router
+
 doctrine:
 	symfony console doctrine:schema:validate
 	symfony console doctrine:mapping:info
@@ -36,6 +39,7 @@ doctrine:
 analyse:
 	make composer
 	make container
+	make routes
 	make yaml
 	make twig
 	make phpmd
