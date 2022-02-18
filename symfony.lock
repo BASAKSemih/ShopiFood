@@ -164,6 +164,9 @@
     "phpmd/phpmd": {
         "version": "2.11.1"
     },
+    "phpmetrics/phpmetrics": {
+        "version": "v2.7.4"
+    },
     "phpstan/phpdoc-parser": {
         "version": "1.2.0"
     },
