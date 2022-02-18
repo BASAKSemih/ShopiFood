@@ -12,6 +12,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.11",
         "friendsoftwig/twigcs": "^5.1",
+        "nunomaduro/phpinsights": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpmd/phpmd": "^2.11",
         "phpstan/phpdoc-parser": "^1.2",
@@ -52,7 +53,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         },
         "optimize-autoloader": true,
         "preferred-install": {

@@ -5,3 +5,6 @@ twig:
 
 phpmd:
 	vendor/bin/phpmd src/ text .phpmd.xml
+
+insights:
+	vendor/bin/phpinsights --no-interaction
