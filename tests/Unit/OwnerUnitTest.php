@@ -5,10 +5,11 @@ namespace App\Tests\Unit;
 use App\Entity\Owner;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Constraints\Date;
 
 class OwnerUnitTest extends TestCase
 {
-    public function testUnitOwnerShouldTrue(): void
+    public function testOwnerAssertSame(): void
     {
         $owner = new Owner();
         $dateTime = new DateTimeImmutable();
@@ -27,5 +28,25 @@ class OwnerUnitTest extends TestCase
         $this->assertSame($owner->getFirstName(), 'Richard');
         $this->assertSame($owner->getPhoneNumber(), '0614562452');
         $this->assertSame($owner->getCreatedAt(), $dateTime);
+    }
+
+    public function testOwnerExpected(): void
+    {
+        $owner = new Owner();
+        $dateTime = new DateTimeImmutable();
+        $owner
+            ->setFirstName('lorem')
+            ->setLastName('lorem')
+            ->setEmail('lorem')
+            ->setPassword('lorem')
+            ->setPhoneNumber('lorem')
+            ->setCreatedAt(new DateTimeImmutable('+1hour'));
+
+        $this->assertNotSame('Richard', $owner->getFirstName());
+        $this->assertNotSame('McDonald', $owner->getLastName());
+        $this->assertNotSame('richard@mcdonald.com', $owner->getEmail());
+        $this->assertNotSame('password', $owner->getPassword());
+        $this->assertNotSame('0614562452', $owner->getPhoneNumber());
+        $this->assertNotSame($owner->getCreatedAt(), new DateTimeImmutable());
     }
 }
