@@ -59,6 +59,8 @@ jobs:
         run: php bin/phpunit --testsuite integration
       - name: Run Unit Test
         run: php bin/phpunit --testsuite unit
+      - name: Run Functional Test
+        run: php bin/phpunit --testsuite functional
       - name: Anlyse Symfony Configuration YAML
         run: php bin/console lint:yaml config
       - name: Analyze Twig
