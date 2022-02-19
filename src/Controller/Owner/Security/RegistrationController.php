@@ -7,6 +7,7 @@ namespace App\Controller\Owner\Security;
 use App\Entity\Owner;
 use App\Form\OwnerType;
 use App\Repository\OwnerRepository;
+use App\Service\Mail\ConfirmMailRegistration;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,12 +23,11 @@ final class RegistrationController extends AbstractController
         protected EntityManagerInterface $entityManager,
         protected OwnerRepository $ownerRepository,
         protected UserPasswordHasherInterface $passwordHasher,
-        protected MailerInterface $mailer
     ) {
     }
 
     #[Route('/espace-restaurant/inscription', name: 'register')]
-    public function registration(Request $request): Response
+    public function registration(Request $request, ConfirmMailRegistration $mailRegistration): Response
     {
         if ($this->getUser()) {
             $this->addFlash('warning', 'Vous êtes déjà connecter, vous ne pouvez pas vous inscrire');
@@ -44,6 +44,7 @@ final class RegistrationController extends AbstractController
                 $owner->setEmailToken($this->generateToken());
                 $this->entityManager->persist($owner);
                 $this->entityManager->flush();
+                $mailRegistration->sendConfirmRegistration($owner);
                 $this->addFlash('success', "Vous aller recevoir un email pour vérifier votre compte à l'adresse suivante : ".$owner->getEmail());
             }
         }

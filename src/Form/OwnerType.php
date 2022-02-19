@@ -78,7 +78,7 @@ class OwnerType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => false,
                 'attr' => [
-                    'class' => 'btn btn-lg my-3 btnConnexion',
+                    'class' => 'btn btn-lg btn-primary mt-2',
                 ],
             ]);
     }
