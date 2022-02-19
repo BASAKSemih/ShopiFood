@@ -10,6 +10,7 @@ use App\Repository\OwnerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,10 +27,11 @@ final class RegistrationController extends AbstractController
     }
 
     #[Route('/espace-restaurant/inscription', name: 'register')]
-    public function registration(Request $request)
+    public function registration(Request $request): Response
     {
         if ($this->getUser()) {
             $this->addFlash('warning', 'Vous êtes déjà connecter, vous ne pouvez pas vous inscrire');
+
             return $this->redirectToRoute('homePage');
         }
         $owner = new Owner();
@@ -42,9 +44,10 @@ final class RegistrationController extends AbstractController
                 $owner->setEmailToken($this->generateToken());
                 $this->entityManager->persist($owner);
                 $this->entityManager->flush();
-                $this->addFlash('success', "Vous aller recevoir un email pour vérifier votre compte à l'adresse suivante : " . $owner->getEmail());
+                $this->addFlash('success', "Vous aller recevoir un email pour vérifier votre compte à l'adresse suivante : ".$owner->getEmail());
             }
         }
+
         return $this->render('owner/security/register.html.twig', ['form' => $form->createView()]);
     }
 
@@ -52,5 +55,4 @@ final class RegistrationController extends AbstractController
     {
         return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
     }
-
 }

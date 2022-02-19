@@ -5,7 +5,6 @@ namespace App\Tests\Unit;
 use App\Entity\Owner;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Validator\Constraints\Date;
 
 class OwnerUnitTest extends TestCase
 {
