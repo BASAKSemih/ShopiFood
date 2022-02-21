@@ -19,7 +19,13 @@ security:
             security: false
         main:
             lazy: true
+            pattern: ^/espace-restaurant
             provider: app_user_provider
+            user_checker: App\Security\Owner\OwnerChecker
+            custom_authenticator: App\Security\Owner\OwnerAuthenticator
+            logout:
+                path: security_owner_logout
+                target: homePage
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

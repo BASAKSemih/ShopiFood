@@ -62,7 +62,7 @@ final class RegistrationController extends AbstractController
         }
         /** @var Owner $owner */
         $owner = $this->ownerRepository->findOneByEmailToken($idEmailToken);
-        /** @phpstan-ignore-next-line  */
+        /* @phpstan-ignore-next-line  */
         if (!$owner) {
             $this->addFlash('warning', "URL Invalide, ou le compte n'existe pas");
 
