@@ -41,7 +41,7 @@ final class RestaurantController extends AbstractController
         if ($owner->getRestaurant()) {
             $this->addFlash('warning', 'Erreur, vous avez déjà crée votre restaurant');
 
-            return $this->redirectToRoute('security_owner_login');
+            return $this->redirectToRoute('homePage');
         }
         $restaurant = new Restaurant();
         $form = $this->createForm(RestaurantType::class, $restaurant)->handleRequest($request);
