@@ -10,9 +10,9 @@ use App\Repository\OwnerRepository;
 use App\Service\Mail\ConfirmMailRegistration;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -46,11 +46,36 @@ final class RegistrationController extends AbstractController
                 $this->entityManager->flush();
                 $mailRegistration->sendConfirmRegistration($owner);
                 $this->addFlash('success', "Vous aller recevoir un email pour vérifier votre compte à l'adresse suivante : ".$owner->getEmail());
+
                 return $this->redirectToRoute('homePage'); // TODO Redirect to login route
             }
         }
 
         return $this->render('owner/security/register.html.twig', ['form' => $form->createView()]);
+    }
+
+    #[Route('/espace-restaurant/inscription/confirmer-mon-compte/{idEmailToken}', name: 'confirm_account')]
+    public function confirmOwnerAccount(string $idEmailToken): RedirectResponse
+    {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('homePage'); // TODO Redirect to owner HomePage route
+        }
+        /** @var Owner $owner */
+        $owner = $this->ownerRepository->findOneByEmailToken($idEmailToken);
+        if (!$owner) {
+            $this->addFlash('warning', "URL Invalide, ou le compte n'existe pas");
+
+            return $this->redirectToRoute('security_owner_register');
+        }
+        if (true === $owner->getIsVerified()) {
+            return $this->redirectToRoute('homePage');
+        }
+        $owner->setIsVerified(true);
+        $owner->setRoles((array) 'OWNER_VERIFIED');
+        $this->entityManager->flush();
+        $this->addFlash('success', 'Votre compte à bien été valider');
+
+        return $this->redirectToRoute('homePage'); // TODO REdirect TO Login
     }
 
     private function generateToken(): string
