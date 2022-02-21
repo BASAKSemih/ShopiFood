@@ -15,7 +15,7 @@ final class OwnerFixtures extends Fixture
     {
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $owner = new Owner();
         $owner

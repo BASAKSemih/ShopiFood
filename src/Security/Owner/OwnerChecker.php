@@ -11,17 +11,17 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 final class OwnerChecker implements UserCheckerInterface
 {
-    public function checkPreAuth(UserInterface $owner): void
+    public function checkPreAuth(UserInterface $user): void
     {
-        if (!$owner instanceof Owner) {
+        if (!$user instanceof Owner) {
             return;
         }
     }
 
-    public function checkPostAuth(UserInterface $owner)
+    public function checkPostAuth(UserInterface $user): void
     {
-        /** @var $owner Owner */
-        if (false === $owner->getIsVerified()) {
+        /** @phpstan-ignore-next-line */
+        if (false === $user->getIsVerified()) {
             throw new UnsupportedUserException('Veuillez vérifier votre email');
         }
     }
