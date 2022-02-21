@@ -146,6 +146,9 @@
     "league/container": {
         "version": "4.2.0"
     },
+    "league/html-to-markdown": {
+        "version": "5.0.2"
+    },
     "monolog/monolog": {
         "version": "2.3.5"
     },
