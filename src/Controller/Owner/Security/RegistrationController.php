@@ -46,6 +46,7 @@ final class RegistrationController extends AbstractController
                 $this->entityManager->flush();
                 $mailRegistration->sendConfirmRegistration($owner);
                 $this->addFlash('success', "Vous aller recevoir un email pour vérifier votre compte à l'adresse suivante : ".$owner->getEmail());
+                return $this->redirectToRoute('homePage'); // TODO Redirect to login route
             }
         }
 
