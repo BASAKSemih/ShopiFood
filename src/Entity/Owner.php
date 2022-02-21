@@ -48,6 +48,9 @@ class Owner implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private string $emailToken = '';
 
+    #[ORM\OneToOne(mappedBy: 'owner', targetEntity: Restaurant::class, cascade: ['persist', 'remove'])]
+    private ?Restaurant $restaurant;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
@@ -211,6 +214,23 @@ class Owner implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmailToken(string $emailToken): self
     {
         $this->emailToken = $emailToken;
+
+        return $this;
+    }
+
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(Restaurant $restaurant): self
+    {
+        // set the owning side of the relation if necessary
+        if ($restaurant->getOwner() !== $this) {
+            $restaurant->setOwner($this);
+        }
+
+        $this->restaurant = $restaurant;
 
         return $this;
     }

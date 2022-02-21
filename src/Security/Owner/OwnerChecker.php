@@ -20,7 +20,7 @@ final class OwnerChecker implements UserCheckerInterface
 
     public function checkPostAuth(UserInterface $user): void
     {
-        /** @phpstan-ignore-next-line */
+        /* @phpstan-ignore-next-line */
         if (false === $user->getIsVerified()) {
             throw new UnsupportedUserException('Veuillez vérifier votre email');
         }
