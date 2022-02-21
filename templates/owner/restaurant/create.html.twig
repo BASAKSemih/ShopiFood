@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal mt-5 pt-5">Crée sont restaurant</h1>
+        {{ form_start(form) }}
+        <label for="">Nom du restaurant</label>
+        {{ form_row(form.name) }}
+        <label for="">Description du restaurant</label>
+        {{ form_row(form.description) }}
+        <label for="">Clée public Stripe du restaurant</label>
+        {{ form_row(form.stripePublicKey) }}
+        <label for="">Clée privée Stripe du restaurant</label>
+        {{ form_row(form.stripePrivateKey) }}
+        {{ form_widget(form.submit, {'label': 'Crée sont restaurant'}) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

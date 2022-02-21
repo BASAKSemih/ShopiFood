@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route(name: 'restaurant_owner_')]
 final class RestaurantController extends AbstractController
@@ -20,7 +21,8 @@ final class RestaurantController extends AbstractController
     public function __construct(
         protected EntityManagerInterface $entityManager,
         protected OwnerRepository $ownerRepository,
-        protected RestaurantRepository $restaurantRepository
+        protected RestaurantRepository $restaurantRepository,
+        protected SluggerInterface $slugger
     ) {
     }
 
@@ -42,6 +44,7 @@ final class RestaurantController extends AbstractController
         $form = $this->createForm(RestaurantType::class, $restaurant)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $restaurant->setOwner($owner);
+            $restaurant->setSlug((string)$this->slugger->slug($restaurant->getName()));
             $this->entityManager->persist($restaurant);
             $this->entityManager->flush();
             $this->addFlash('success', "Votre restaurant à été crée");

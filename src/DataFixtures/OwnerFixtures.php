@@ -28,5 +28,18 @@ final class OwnerFixtures extends Fixture
 
         $manager->persist($owner);
         $manager->flush();
+
+        $owner2 = new Owner();
+        $owner2
+            ->setFirstName('David')
+            ->setLastName('Johnson')
+            ->setIsVerified(true)
+            ->setRoles((array) 'OWNER_VERIFIED')
+            ->setEmail('david@john.com')
+            ->setPhoneNumber('05136456')
+            ->setPassword($this->userPasswordHasher->hashPassword($owner2, 'password'));
+
+        $manager->persist($owner2);
+        $manager->flush();
     }
 }
