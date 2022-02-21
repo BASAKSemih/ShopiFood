@@ -53,7 +53,6 @@ class RestaurantType extends AbstractType
                     'class' => 'btn btn-lg btn-primary mt-2',
                 ],
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

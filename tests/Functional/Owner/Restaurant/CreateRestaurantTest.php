@@ -30,11 +30,9 @@ final class CreateRestaurantTest extends WebTestCase
             'restaurant[description]' => 'description',
             'restaurant[stripePublicKey]' => 'stripePublicKey',
             'restaurant[stripePrivateKey]' => 'stripePrivateKey',
-
         ]);
         $client->submit($form);
         $client->followRedirect();
         self::assertRouteSame('homePage');
     }
-
 }

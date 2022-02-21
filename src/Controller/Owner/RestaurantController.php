@@ -31,27 +31,30 @@ final class RestaurantController extends AbstractController
     {
         /** @var Owner $owner */
         $owner = $this->getUser();
-        if (!$owner)
-        {
-            $this->addFlash('warning', "Erreur, vous devez être connecter");
+        if (!$owner) {
+            $this->addFlash('warning', 'Erreur, vous devez être connecter');
+
             return $this->redirectToRoute('security_owner_login');
         }
         if ($owner->getRestaurant()) {
-            $this->addFlash('warning', "Erreur, vous avez déjà crée votre restaurant");
+            $this->addFlash('warning', 'Erreur, vous avez déjà crée votre restaurant');
+
             return $this->redirectToRoute('security_owner_login');
         }
         $restaurant = new Restaurant();
         $form = $this->createForm(RestaurantType::class, $restaurant)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $restaurant->setOwner($owner);
-            $restaurant->setSlug((string)$this->slugger->slug($restaurant->getName()));
+            $restaurant->setSlug((string) $this->slugger->slug($restaurant->getName()));
             $this->entityManager->persist($restaurant);
             $this->entityManager->flush();
-            $this->addFlash('success', "Votre restaurant à été crée");
+            $this->addFlash('success', 'Votre restaurant à été crée');
+
             return $this->redirectToRoute('homePage'); //TODO redirect to restaurant show
         }
+
         return $this->render('owner/restaurant/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }
