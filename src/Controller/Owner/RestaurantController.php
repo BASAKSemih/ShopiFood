@@ -12,6 +12,7 @@ use App\Repository\RestaurantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -27,10 +28,11 @@ final class RestaurantController extends AbstractController
     }
 
     #[Route('/espace-restaurant/cree-sont-restaurant', name: 'create')]
-    public function createRestaurant(Request $request)
+    public function createRestaurant(Request $request): Response
     {
         /** @var Owner $owner */
         $owner = $this->getUser();
+        /** @phpstan-ignore-next-line  */
         if (!$owner) {
             $this->addFlash('warning', 'Erreur, vous devez être connecter');
 
@@ -45,6 +47,7 @@ final class RestaurantController extends AbstractController
         $form = $this->createForm(RestaurantType::class, $restaurant)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $restaurant->setOwner($owner);
+            /** @phpstan-ignore-next-line  */
             $restaurant->setSlug((string) $this->slugger->slug($restaurant->getName()));
             $this->entityManager->persist($restaurant);
             $this->entityManager->flush();
