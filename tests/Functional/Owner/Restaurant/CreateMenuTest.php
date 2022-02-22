@@ -30,7 +30,7 @@ final class CreateMenuTest extends WebTestCase
         /** @var Restaurant $restaurant */
         $restaurant = $restaurantRepository->findOneByName('Super-Resto');
         $crawler = $client->request(Request::METHOD_GET, $router->generate('restaurant_menu_owner_create', [
-            'idRestaurant' => $restaurant->getId()
+            'idRestaurant' => $restaurant->getId(),
         ]));
         self::assertRouteSame('restaurant_menu_owner_create');
         $form = $crawler->filter('form[name=menu]')->form([
@@ -43,5 +43,4 @@ final class CreateMenuTest extends WebTestCase
         $client->followRedirect();
         self::assertRouteSame('homePage');
     }
-
 }

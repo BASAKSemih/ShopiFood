@@ -36,7 +36,7 @@ final class RestaurantFixtures extends Fixture
             ->setName('Super-Resto')
             ->setOwner($owner)
             ->setDescription('lorem')
-            ->setSlug((string)$this->slugger->slug($restaurant->getName()))
+            ->setSlug((string) $this->slugger->slug($restaurant->getName()))
             ->setStripePrivateKey('privatekey')
             ->setStripePublicKey('publicKey');
         $manager->persist($restaurant);

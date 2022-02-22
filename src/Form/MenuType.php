@@ -23,21 +23,21 @@ class MenuType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
             ])
             ->add('price', MoneyType::class, [
                 'label' => false,
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
                 ],
-                'divisor' => 100
+                'divisor' => 100,
             ])
             ->add('description', TextareaType::class, [
                 'label' => false,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
             ])
             ->add('category', EntityType::class, [
                 'placeholder' => 'Séléctionner la catégorie du plat',
@@ -45,17 +45,17 @@ class MenuType extends AbstractType
                 'label' => false,
                 'multiple' => false,
                 'choice_label' => function (Category $category) {
-                        return $category->getName();
+                    return $category->getName();
                 },
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => false,
                 'attr' => [
                     'class' => 'btn btn-lg btn-primary mt-2',
-                ]
+                ],
             ])
         ;
     }

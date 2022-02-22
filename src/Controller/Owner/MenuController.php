@@ -24,38 +24,42 @@ final class MenuController extends AbstractController
     }
 
     #[Route('/espace-restaurant/{idRestaurant}/ajouter-sont-menu', name: 'create')]
-    public function createMenu(int $idRestaurant, Request $request):Response
+    public function createMenu(int $idRestaurant, Request $request): Response
     {
         /** @var Owner $owner */
         $owner = $this->getUser();
         /* @phpstan-ignore-next-line  */
         if (!$owner) {
             $this->addFlash('warning', 'Erreur, vous devez être connecter');
+
             return $this->redirectToRoute('security_owner_login');
         }
         /** @var Restaurant $restaurant */
         $restaurant = $this->restaurantRepository->findOneById($idRestaurant);
         if (!$restaurant) {
             $this->addFlash('warning', "Erreur, ce Restaurant n'existe pas");
+
             return $this->redirectToRoute('security_owner_login');
         }
         if ($restaurant->getOwner() !== $owner) {
             $this->addFlash('danger', "Vous n'êtes pas le propriétaire de se restaurant");
+
             return $this->redirectToRoute('security_owner_login');
         }
         $menu = new Menu();
         $form = $this->createForm(MenuType::class, $menu)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $menu->setRestaurant($restaurant);
-            $menu->setSlug((string)$this->slugger->slug($menu->getName()));
+            $menu->setSlug((string) $this->slugger->slug($menu->getName()));
             $this->entityManager->persist($menu);
             $this->entityManager->flush();
-            $this->addFlash('success', "Le menu a bien été ajouter");
+            $this->addFlash('success', 'Le menu a bien été ajouter');
+
             return $this->redirectToRoute('homePage');
         }
+
         return $this->render('owner/restaurant/menu/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
-
 }
