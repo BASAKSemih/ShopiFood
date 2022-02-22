@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal mt-5 pt-5">Ajouter un menu à sont restaurant</h1>
+        {{ form_start(form) }}
+        <label for="">Nom du menu</label>
+        {{ form_row(form.name) }}
+        <label for="">Description du menu</label>
+        {{ form_row(form.description) }}
+        <label for="">Catégorie du menu</label>
+        {{ form_row(form.description) }}
+        <label for="">Prix du menu</label>
+        {{ form_row(form.description) }}
+
+        {{ form_widget(form.submit, {'label': 'Ajouter sont Menu'}) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
