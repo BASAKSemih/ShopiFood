@@ -40,9 +40,9 @@ class MenuType extends AbstractType
                 ]
             ])
             ->add('category', EntityType::class, [
-                'label' => 'Catégorie',
                 'placeholder' => 'Séléctionner la catégorie du plat',
                 'class' => Category::class,
+                'label' => false,
                 'multiple' => false,
                 'choice_label' => function (Category $category) {
                         return $category->getName();
