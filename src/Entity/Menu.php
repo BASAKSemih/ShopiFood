@@ -35,6 +35,10 @@ class Menu
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
 
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'menus')]
+    #[ORM\JoinColumn(nullable: false)]
+    private Category $category;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
@@ -113,6 +117,18 @@ class Menu
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
