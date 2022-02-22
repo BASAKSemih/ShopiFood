@@ -47,7 +47,6 @@ final class RestaurantController extends AbstractController
         $form = $this->createForm(RestaurantType::class, $restaurant)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $restaurant->setOwner($owner);
-            /* @phpstan-ignore-next-line  */
             $restaurant->setSlug((string) $this->slugger->slug($restaurant->getName()));
             $this->entityManager->persist($restaurant);
             $this->entityManager->flush();

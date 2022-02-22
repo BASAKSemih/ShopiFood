@@ -36,6 +36,7 @@ final class MenuController extends AbstractController
         }
         /** @var Restaurant $restaurant */
         $restaurant = $this->restaurantRepository->findOneById($idRestaurant);
+        /* @phpstan-ignore-next-line  */
         if (!$restaurant) {
             $this->addFlash('warning', "Erreur, ce Restaurant n'existe pas");
 
