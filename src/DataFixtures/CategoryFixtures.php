@@ -21,6 +21,17 @@ final class CategoryFixtures extends Fixture
         $category->setName('Pizza');
         $category->setSlug((string) $this->slugger->slug($category->getName()));
         $manager->persist($category);
+
+        $category2 = new Category();
+        $category2->setName('Tacos');
+        $category2->setSlug((string) $this->slugger->slug($category2->getName()));
+        $manager->persist($category2);
+        $manager->flush();
+
+        $category3 = new Category();
+        $category3->setName('Burgers');
+        $category3->setSlug((string) $this->slugger->slug($category3->getName()));
+        $manager->persist($category3);
         $manager->flush();
     }
 }
