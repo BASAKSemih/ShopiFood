@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route(name: 'menu_owner_')]
+#[Route(name: 'restaurant_menu_owner_')]
 final class MenuController extends AbstractController
 {
     public function __construct(protected EntityManagerInterface $entityManager, protected RestaurantRepository $restaurantRepository, protected SluggerInterface $slugger)
@@ -51,7 +51,7 @@ final class MenuController extends AbstractController
             $this->entityManager->persist($menu);
             $this->entityManager->flush();
             $this->addFlash('success', "Le menu a bien été ajouter");
-            return $this->redirectToRoute('menu_owner_create', ['idRestaurant' => $restaurant->getId()]); // TODO Redirect to restaurant
+            return $this->redirectToRoute('homePage');
         }
         return $this->render('owner/restaurant/menu/create.html.twig', [
             'form' => $form->createView()
