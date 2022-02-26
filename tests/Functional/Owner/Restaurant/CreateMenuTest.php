@@ -53,5 +53,4 @@ final class CreateMenuTest extends WebTestCase
 
         return new UploadedFile($filePath, $fileName, null, null, true);
     }
-
 }

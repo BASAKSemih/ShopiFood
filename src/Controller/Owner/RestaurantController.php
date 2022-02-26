@@ -70,12 +70,14 @@ final class RestaurantController extends AbstractController
         $restaurant = $this->restaurantRepository->findOneBySlug($slug);
         if (!$restaurant) {
             $this->addFlash('warning', "Erreur, ce restaurant n'existe pas");
+
             return $this->redirectToRoute('homePage');
         }
         /** @var Owner $owner */
         $owner = $this->getUser();
         if ($restaurant->getOwner() !== $owner) {
             $this->addFlash('warning', "Vous n'êtes pas le propriétaire de se restaurant");
+
             return $this->redirectToRoute('homePage');
         }
         /** @return Collection<Menu> $menus */
@@ -83,7 +85,7 @@ final class RestaurantController extends AbstractController
 
         return $this->render('owner/restaurant/show.html.twig', [
             'menus' => $menus,
-            'restaurant' => $restaurant
+            'restaurant' => $restaurant,
         ]);
     }
 }
