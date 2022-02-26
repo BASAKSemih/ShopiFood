@@ -75,5 +75,5 @@ jobs:
         run: vendor/bin/phpmd src/ text .phpmd.xml
       - name: Analyse Quality Code Php Insights
         run: vendor/bin/phpinsights --no-interaction
-      - name: Analyse Static Code Php Insights
+      - name: Analyse Static Code Php Stan
         run: php vendor/bin/phpstan analyse -c phpstan.neon src --no-progress
