@@ -6,6 +6,7 @@ namespace App\Tests\Functional\Owner\Restaurant;
 
 use App\Entity\Restaurant;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -35,6 +36,7 @@ final class CreateMenuTest extends WebTestCase
         self::assertRouteSame('restaurant_menu_owner_create');
         $form = $crawler->filter('form[name=menu]')->form([
             'menu[name]' => 'menu name',
+            'menu[image]' => $this->createImage(),
             'menu[price]' => 2323,
             'menu[description]' => 'menu description',
             'menu[category]' => 1,
@@ -43,4 +45,13 @@ final class CreateMenuTest extends WebTestCase
         $client->followRedirect();
         self::assertRouteSame('homePage');
     }
+
+    private function createImage(): UploadedFile
+    {
+        $fileName = 'foo.pdf';
+        $filePath = sprintf('%s/foo.jpg', __DIR__);
+
+        return new UploadedFile($filePath, $fileName, null, null, true);
+    }
+
 }
