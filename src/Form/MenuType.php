@@ -8,11 +8,13 @@ use App\Entity\Category;
 use App\Entity\Menu;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MenuType extends AbstractType
@@ -47,6 +49,15 @@ class MenuType extends AbstractType
                 'choice_label' => function (Category $category) {
                     return $category->getName();
                 },
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('image', FileType::class, [
+                'label' => false,
+                'multiple' => false,
+                'mapped' => false,
+                'required' => true,
                 'attr' => [
                     'class' => 'form-control',
                 ],

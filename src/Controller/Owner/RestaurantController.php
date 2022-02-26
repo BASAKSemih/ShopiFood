@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controller\Owner;
 
+use App\Entity\Menu;
 use App\Entity\Owner;
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
 use App\Repository\MenuRepository;
 use App\Repository\OwnerRepository;
 use App\Repository\RestaurantRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -63,7 +65,7 @@ final class RestaurantController extends AbstractController
     }
 
     #[Route('/espace-restaurant/restaurant/{slug}', name: 'show')]
-    public function showRestaurant(string $slug)
+    public function showRestaurant(string $slug): Response
     {
         $restaurant = $this->restaurantRepository->findOneBySlug($slug);
         if (!$restaurant) {
@@ -76,6 +78,7 @@ final class RestaurantController extends AbstractController
             $this->addFlash('warning', "Vous n'êtes pas le propriétaire de se restaurant");
             return $this->redirectToRoute('homePage');
         }
+        /** @return Collection<Menu> $menus */
         $menus = $this->menuRepository->findByRestaurant($restaurant);
 
         return $this->render('owner/restaurant/show.html.twig', [
