@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Security\Owner;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,7 +17,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 
-class OwnerAuthenticator extends AbstractLoginFormAuthenticator
+final class OwnerAuthenticator extends AbstractLoginFormAuthenticator
 {
     public const LOGIN_ROUTE = 'security_owner_login';
 
