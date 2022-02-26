@@ -17,11 +17,11 @@ final class ConfirmMailRegistration
     public function sendConfirmRegistration(Owner $owner): void
     {
         $email = (new TemplatedEmail())
-                    ->from('semihbasak25@gmail.com')
-                    ->to($owner->getEmail())
-                    ->subject('Inscription réussite')
-                    ->htmlTemplate('mail/owner/confirm_account.html.twig')
-                    ->context(['owner' => $owner, 'token' => $owner->getEmailToken()]);
+            ->from('semihbasak25@gmail.com')
+            ->to($owner->getEmail())
+            ->subject('Inscription réussite')
+            ->htmlTemplate('mail/owner/confirm_account.html.twig')
+            ->context(['owner' => $owner, 'token' => $owner->getEmailToken()]);
         $this->mailer->send($email);
     }
 }
