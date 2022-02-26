@@ -11,6 +11,7 @@ use App\Form\MenuType;
 use App\Repository\RestaurantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,6 +51,14 @@ final class MenuController extends AbstractController
         $menu = new Menu();
         $form = $this->createForm(MenuType::class, $menu)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $image */
+            $image = $form->get('image')->getData();
+            $file = md5(uniqid()).'.'.$image->guessExtension();
+            $image->move(
+                $this->getParameter('menu_image_directory'),
+                $file
+            );
+            $menu->setImageFileName($file);
             $menu->setRestaurant($restaurant);
             $menu->setSlug((string) $this->slugger->slug($menu->getName()));
             $this->entityManager->persist($menu);

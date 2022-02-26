@@ -65,9 +65,8 @@ return [
         'phpinsights.php',
         'src/Kernel.php',
         'migrations',
-        'src/Form',
-        'src/Security/AppAuthenticator',
-        'src/Twig',
+        'src/Security/',
+        'src/Form'
     ],
 
     'add' => [
@@ -97,7 +96,10 @@ return [
             'ignoreComments' => true,
         ],
         CyclomaticComplexityIsHigh::class => [
-            'maxComplexity' => 4,
+            'maxComplexity' => 8,
+        ],
+        SlevomatCodingStandard\Sniffs\Functions\FunctionLengthSniff::class => [
+            'maxLinesLength' => 60,
         ],
     ],
 
@@ -113,10 +115,10 @@ return [
      */
 
     'requirements' => [
-        'min-quality' => 80,
-        'min-complexity' => 80,
-        'min-architecture' => 80,
-        'min-style' => 80,
+        'min-quality' => 50,
+        'min-complexity' => 50,
+        'min-architecture' => 50,
+        'min-style' => 50,
         'disable-security-check' => false,
     ],
 

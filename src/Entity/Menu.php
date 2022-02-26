@@ -39,6 +39,9 @@ class Menu
     #[ORM\JoinColumn(nullable: false)]
     private Category $category;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $imageFileName;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
@@ -129,6 +132,18 @@ class Menu
     public function setCategory(Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImageFileName(): ?string
+    {
+        return $this->imageFileName;
+    }
+
+    public function setImageFileName(string $imageFileName): self
+    {
+        $this->imageFileName = $imageFileName;
 
         return $this;
     }
