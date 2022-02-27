@@ -28,5 +28,4 @@ final class RegistrationTest extends WebTestCase
         $client->followRedirect();
         self::assertRouteSame('homePage');
     }
-
 }

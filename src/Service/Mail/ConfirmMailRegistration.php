@@ -19,6 +19,7 @@ final class ConfirmMailRegistration
     {
         $email = (new TemplatedEmail())
             ->from('semihbasak25@gmail.com')
+            /* @phpstan-ignore-next-line  */
             ->to($entity->getEmail())
             ->subject('Inscription réussite')
             ->htmlTemplate('mail/owner/confirm_account.html.twig')
