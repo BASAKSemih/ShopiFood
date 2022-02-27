@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal mt-5 pt-5">Inscription à l'espace utilisateur</h1>
+        {{ form_start(form) }}
+        <label for="">Votre Email</label>
+        {{ form_row(form.email) }}
+        <label for="">Votre Nom</label>
+        {{ form_row(form.lastName) }}
+        <label for="">Votre Prénom</label>
+        {{ form_row(form.firstName) }}
+        <label for="">Mot de passe</label>
+        {{ form_row(form.password.first) }}
+        <label for="">Confirmation Mot de passe</label>
+        {{ form_row(form.password.second) }}
+        {{ form_widget(form.submit, {'label': 'Crée sont compte'}) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
