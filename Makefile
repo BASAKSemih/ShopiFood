@@ -43,7 +43,6 @@ analyse:
 	make yaml
 	make twig
 	make phpmd
-	make phpcpd
 	make insights
 	make phpstan
 
