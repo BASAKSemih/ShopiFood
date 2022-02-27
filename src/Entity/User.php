@@ -39,6 +39,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $emailToken = '';
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
@@ -166,6 +169,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getEmailToken(): ?string
+    {
+        return $this->emailToken;
+    }
+
+    public function setEmailToken(string $emailToken): self
+    {
+        $this->emailToken = $emailToken;
 
         return $this;
     }
