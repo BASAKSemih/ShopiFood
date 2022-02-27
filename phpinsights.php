@@ -66,7 +66,7 @@ return [
         'src/Kernel.php',
         'migrations',
         'src/Security/',
-        'src/Form'
+        'src/Form',
     ],
 
     'add' => [
