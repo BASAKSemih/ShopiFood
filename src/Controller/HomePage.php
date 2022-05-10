@@ -13,6 +13,8 @@ final class HomePage extends AbstractController
     #[Route('/', name: 'homePage')]
     public function home(): Response
     {
+        $user->setPassword($newPassword)
+        $this->entityManager->flush();
         return $this->render('home/index.html.twig');
     }
 }
